@@ -11,6 +11,11 @@
 |
 */
 
+use App\Http\Controllers\CastController;
+
+Route::resource('casts', 'CastController');
+Route::resource('user.casts', 'CastController');
+
 Route::get('/', function () {
     return view('welcome');
 });
