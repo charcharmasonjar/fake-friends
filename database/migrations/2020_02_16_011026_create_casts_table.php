@@ -16,6 +16,7 @@ class CreateCastsTable extends Migration
         Schema::create('casts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->index();
+            $table->string('name');
             $table->timestamps();
         });
     }
