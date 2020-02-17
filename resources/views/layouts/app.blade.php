@@ -74,6 +74,7 @@
 
         <main class="py-4">
             @yield('content')
+            <create-cast-component></create-cast-component>
         </main>
     </div>
 </body>
