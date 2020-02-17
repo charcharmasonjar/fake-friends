@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/casts', 'CastController@index');
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
