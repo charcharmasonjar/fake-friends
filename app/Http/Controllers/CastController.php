@@ -20,7 +20,12 @@ class CastController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('casts.index');
+    }
+
+    public function new()
+    {
+        return view('casts.new');
     }
 
     /**

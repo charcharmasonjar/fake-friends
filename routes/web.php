@@ -14,6 +14,7 @@
 
 // Cast routes
 Route::get('/casts', 'CastController@index');
+Route::get('/cast/new', 'CastController@new');
 Route::post('/cast', 'CastController@store');
 Route::delete('/cast/{cast}', 'CastController@destroy');
 
