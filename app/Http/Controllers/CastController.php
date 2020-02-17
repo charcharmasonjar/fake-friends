@@ -20,7 +20,7 @@ class CastController extends Controller
      */
     public function index()
     {
-        return new CastResource(Cast::all());
+        return view('home');
     }
 
     /**
@@ -31,7 +31,9 @@ class CastController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
     }
 
     /**
