@@ -34,6 +34,14 @@ class CastController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
+
+        $request->user()->casts()->create([
+            'name' => $request->name,
+        ]);
+
+        return response()->json(null, 200);
+
+        return redirect('/home');
     }
 
     /**

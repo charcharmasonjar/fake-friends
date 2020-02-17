@@ -29,10 +29,5 @@ Vue.component('create-cast-component', require('./components/CreateCastComponent
  */
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        form: {
-            name: ''
-        }
-    }
+    el: '#app'
 });

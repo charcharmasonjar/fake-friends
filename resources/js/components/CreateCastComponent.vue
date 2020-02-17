@@ -3,8 +3,8 @@
         <h3>Create Cast</h3>
 
         <div class="form-group">
-            <label for="cast">Cast Name</label>
-            <input type="text" class="form-control" name="cast" id="cast" />
+            <label for="name">Cast Name</label>
+            <input type="text" class="form-control" name="name" id="name" v-model="fields.name"/>
             <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0]}}</div>
         </div>
         <button type="submit">Create Cast</button>
