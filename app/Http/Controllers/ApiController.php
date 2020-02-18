@@ -9,7 +9,7 @@ class ApiController extends Controller
 {
     public function index(Request $request)
     {
-        $key = $_ENV['GENERATED_PHOTOS_KEY'];
+        $key = env('GENERATED_PHOTOS_KEY');
 
         $client = new Client();
         $response = $client->request('GET', 'https://api.generated.photos/api/v1/faces', [
@@ -19,5 +19,6 @@ class ApiController extends Controller
         $body = $response->getBody()->getContents();
 
         return $body;
+
     }
 }
