@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Cast;
+use App\CastMember;
 use App\Http\Resources\Cast as CastResource;
+use App\Http\Resources\CastMember as CastMemberResource;
+
 use Illuminate\Http\Request;
 
 class CastController extends Controller
@@ -18,9 +21,12 @@ class CastController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('casts.index');
+        $casts = Cast::join('cast_members', 'casts.id', '=', 'cast_members.cast_id')->select('*')->where('user_id', $request->user()->id)->get();
+        return view('casts.index', [
+            'casts' => $casts
+        ]);
     }
 
     public function new()
@@ -44,9 +50,29 @@ class CastController extends Controller
             'name' => $request->name,
         ]);
 
-        return response()->json(null, 200);
+        $newid = Cast::latest()->first()->id;
+
+        $data = array(
+            array('name' => 'namey name', 'cast_id' => $newid, 'original_image_url' => 'hi', 'new_image_url' => 'ho')
+        );
+
+        CastMember::insert($data);
+
+        return response()->json($newid, 200);
 
         return redirect('/home');
+    }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
     }
 
     /**
