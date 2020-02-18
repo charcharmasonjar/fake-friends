@@ -72,12 +72,14 @@ export default {
     props: ["name", "image"],
     methods: {
         async getFaces(age, hair) {
-            // VERY BAD
-            const key = "uUh86sAdRuSm8l_e6S4uiw";
-            let url = `https://api.generated.photos/api/v1/faces?per_page=1&api_key=${key}&age=${age}&hair_color=${hair}`;
-            await axios.get(url).then(res => {
+            axios.get('/json-api', {
+                params: {
+                    age: age,
+                    hair_color: hair
+                }
+            }).then(res => {
                 this.newImg = res.data.faces[0].urls[4][512];
-            });
+            })
         }
     }
 };
