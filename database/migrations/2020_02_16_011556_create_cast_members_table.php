@@ -15,11 +15,12 @@ class CreateCastMembersTable extends Migration
     {
         Schema::create('cast_members', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cast_id')->index();
+            $table->bigInteger('cast_id')->unsigned()->index();
             $table->string('name');
             $table->string('original_image_url');
             $table->string('new_image_url');
             $table->timestamps();
+            $table->foreign('cast_id')->references('id')->on('casts')->onDelete('cascade');
         });
     }
 
