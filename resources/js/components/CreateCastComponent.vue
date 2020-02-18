@@ -11,7 +11,7 @@
             >
             </cast-member>
         </div>
-        <a href="/casts">Cast Complete</a>
+        <a href="/casts"><h3>Cast Complete</h3></a>
     </div>
 </template>
 
@@ -43,7 +43,8 @@ export default {
                 {
                     id: 4,
                     name: "Joey",
-                    image: "https://i.pinimg.com/originals/42/73/af/4273afb2c9d06fc3a2caff2535add639.jpg"
+                    image:
+                        "https://i.pinimg.com/originals/42/73/af/4273afb2c9d06fc3a2caff2535add639.jpg"
                 },
                 {
                     id: 5,

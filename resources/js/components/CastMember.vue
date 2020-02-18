@@ -1,7 +1,6 @@
 <template>
-    <div>
-
-        <div class="card" style="width: 10rem; height: 14rem">
+    <div class="friend">
+        <div class="card" style="width: 12rem; height: 14rem; margin: 10px;">
             <img
                 :src="image"
                 class="card-img-top"
@@ -12,41 +11,51 @@
                 <h5 class="card-title">{{ name }}</h5>
             </div>
         </div>
-        <div>
-            <input type="radio" id="infant" value="infant" v-model="age" />
-            <label for="infant">Infant</label>
-            <br />
-            <input type="radio" id="adult" value="adult" v-model="age" />
-            <label for="adult">Adult</label>
-            <br />
-            <input type="radio" id="elderly" value="elderly" v-model="age" />
-            <label for="elderly">Elderly</label>
-            <br />
-            <span>Age: {{ age }}</span>
-            <br />
+        <div class="row select">
+            <div class="col" style="width: 100%">
+                <span>Age: {{ age }}</span>
+                <br />
+                <input type="radio" id="infant" value="infant" v-model="age" />
+                <label for="infant">Infant</label>
+                <br />
+                <input type="radio" id="adult" value="adult" v-model="age" />
+                <label for="adult">Adult</label>
+                <br />
+                <input
+                    type="radio"
+                    id="elderly"
+                    value="elderly"
+                    v-model="age"
+                />
+                <label for="elderly">Elderly</label>
+                <br />
+            </div>
+            <div class="col" style="width: 100%">
+                <span>Hair: {{ hair }}</span>
+                <br />
+                <input type="radio" id="brown" value="brown" v-model="hair" />
+                <label for="brown">Brown</label>
+                <br />
+                <input type="radio" id="blonde" value="blonde" v-model="hair" />
+                <label for="blonde">Blonde</label>
+                <br />
+                <input type="radio" id="black" value="black" v-model="hair" />
+                <label for="black">Black</label>
+                <br />
+                <input type="radio" id="gray" value="gray" v-model="hair" />
+                <label for="gray">Gray</label>
+                <br />
+                <input type="radio" id="red" value="red" v-model="hair" />
+                <label for="red">Red</label>
+                <br />
+            </div>
         </div>
-        <div>
-            <input type="radio" id="brown" value="brown" v-model="hair" />
-            <label for="brown">Brown</label>
-            <br />
-            <input type="radio" id="blonde" value="blonde" v-model="hair" />
-            <label for="blonde">Blonde</label>
-            <br />
-            <input type="radio" id="black" value="black" v-model="hair" />
-            <label for="black">Black</label>
-            <br />
-            <input type="radio" id="gray" value="gray" v-model="hair" />
-            <label for="gray">Gray</label>
-            <br />
-            <input type="radio" id="red" value="red" v-model="hair" />
-            <label for="red">Red</label>
-            <br />
-            <span>hair: {{ hair }}</span>
-            <br />
-            <button @click="getFaces(age, hair)">Get faces</button>
+        <div style="text-align: center">
+            <button @click="getFaces(age, hair)" class="btn btn-info">
+                Get faces
+            </button>
         </div>
-
-        <div class="card" style="width: 10rem; height: 14rem">
+        <div class="card" style="width: 12rem; height: 14rem; margin: 10px;">
             <img
                 :src="newImg"
                 class="card-img-top"
@@ -73,20 +82,24 @@ export default {
     props: ["name", "image", "castid"],
     methods: {
         getFaces(age, hair) {
-            axios.get('/json-api', {
-                params: {
-                    age: age,
-                    hair_color: hair
-                }
-            }).then(res => {
-                this.newImg = res.data.faces[0].urls[4][512];
-                axios.post(`/cast/${this.castid}`, {
-                    name: this.name,
-                    image: this.newImg})
-                .then(response => {
-                    console.log(response);
+            axios
+                .get("/json-api", {
+                    params: {
+                        age: age,
+                        hair_color: hair
+                    }
                 })
-            })
+                .then(res => {
+                    this.newImg = res.data.faces[0].urls[4][512];
+                    axios
+                        .post(`/cast/${this.castid}`, {
+                            name: this.name,
+                            image: this.newImg
+                        })
+                        .then(response => {
+                            console.log(response);
+                        });
+                });
         }
     }
 };
