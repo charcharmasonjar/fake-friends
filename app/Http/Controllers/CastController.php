@@ -29,9 +29,17 @@ class CastController extends Controller
         ]);
     }
 
-    public function new()
+    public function new(Request $request)
     {
-        return view('casts.new');
+        $request->user()->casts()->create([
+            'name' => 'cast',
+        ]);
+
+        $newid = Cast::latest()->first()->id;
+
+        return view('casts.new', [
+            'castid' => $newid
+        ]);
     }
 
     /**
@@ -52,15 +60,7 @@ class CastController extends Controller
 
         $newid = Cast::latest()->first()->id;
 
-        $data = array(
-            array('name' => 'namey name', 'cast_id' => $newid, 'original_image_url' => 'hi', 'new_image_url' => 'ho')
-        );
-
-        CastMember::insert($data);
-
-        return response()->json($newid, 200);
-
-        return redirect('/home');
+        return response()->json(null, 200);
     }
 
         /**
@@ -72,7 +72,8 @@ class CastController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array('name' => $request->name, 'cast_id' => $id, 'original_image_url' => 'ho', 'new_image_url' => $request->image);
+        CastMember::insert($data);
     }
 
     /**
