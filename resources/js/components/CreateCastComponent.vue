@@ -16,7 +16,7 @@
                     {{ errors.name[0] }}
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="justify-content: space-between">
                 <cast-member
                     v-for="friend in friends"
                     v-bind:name="friend.name"
