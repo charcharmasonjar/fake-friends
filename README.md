@@ -21,9 +21,10 @@ cp .env.example .env
 
 5. Get api key for the Generated Photos api (https://generated.photos/api) and add it to `GENERATED_PHOTOS_KEY=` value in `.env`.
 
-6. Migrate
+6. Migrate and (optional) seed database
 ````
 php artisan migrate
+php artisan db:seed
 ````
 
 7. Install Node modules
@@ -36,3 +37,9 @@ npm install
 ````
 php artisan serve
 ````
+
+9. In another terminal window
+
+```
+npm run watch
+```
