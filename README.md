@@ -43,3 +43,6 @@ php artisan serve
 ```
 npm run watch
 ```
+
+###Project ERD
+![ERD](https://github.com/charcharmasonjar/fake-friends/blob/master/ERD.png)
