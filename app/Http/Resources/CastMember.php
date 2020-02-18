@@ -14,6 +14,12 @@ class CastMember extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'cast_id' => $this->cast_id,
+            'name' => $this->name,
+            'original_image_url' => $this->original_image_url,
+            'new_image_url' => $this->new_image_url
+        ];
     }
 }
