@@ -16,7 +16,7 @@
 Route::get('/casts', 'CastController@index');
 Route::get('/cast/new', 'CastController@new');
 Route::post('/cast', 'CastController@store');
-Route::post('/cast/{cast}', 'CastController@edit');
+Route::post('/cast/{cast}', 'CastController@update');
 Route::delete('/cast/{cast}', 'CastController@destroy');
 
 Route::get('json-api', 'ApiController@index');
