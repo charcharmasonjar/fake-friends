@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="card" style="width: 10rem; height: 14rem">
             <img
                 :src="image"
@@ -69,9 +70,9 @@ export default {
                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png"
         };
     },
-    props: ["name", "image"],
+    props: ["name", "image", "castid"],
     methods: {
-        async getFaces(age, hair) {
+        getFaces(age, hair) {
             axios.get('/json-api', {
                 params: {
                     age: age,
@@ -79,6 +80,12 @@ export default {
                 }
             }).then(res => {
                 this.newImg = res.data.faces[0].urls[4][512];
+                axios.post(`/cast/${this.castid}`, {
+                    name: this.name,
+                    image: this.newImg})
+                .then(response => {
+                    console.log(response);
+                })
             })
         }
     }
