@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <create-cast-component></create-cast-component>
+    <create-cast-component v-bind:castid={{$castid}}></create-cast-component>
 </div>
 @endsection
